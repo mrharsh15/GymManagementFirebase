@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "622653907040",
+    "project_id": "gym-management-ad327",
+    "storage_bucket": "gym-management-ad327.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622653907040:android:a1a62546ced571dd82e305",
+        "android_client_info": {
+          "package_name": "com.codewithme.gymmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622653907040-6djamhva21pkmmvee8m04n65qbu9lmtn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy--8sbmw_h2UDL8kulOMdmw1q6iZ4MD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622653907040-6djamhva21pkmmvee8m04n65qbu9lmtn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
