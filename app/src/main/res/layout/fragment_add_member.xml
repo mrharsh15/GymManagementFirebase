@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.FragmentAddMember">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.023">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="First Name"
+                    android:layout_marginTop="10dp"
+                    android:inputType="text|textCapSentences"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:id="@+id/edtFirstName"
+
+                    tools:ignore="Autofill,HardcodedText" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Last Name"
+                    android:layout_marginTop="10dp"
+                    android:inputType="text|textCapSentences"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:id="@+id/edtLastName"
+
+                    tools:ignore="Autofill,HardcodedText" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender : "
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        tools:ignore="HardcodedText" />
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/radioGroup"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="Male"
+                            android:checked="true"
+                            android:id="@+id/rdMale"/>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="Female"
+                            android:layout_marginStart="10dp"
+                            android:id="@+id/rdFemale"/>
+                    </RadioGroup>
+                </LinearLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Member Id"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:id="@+id/memberId"
+                    tools:ignore="Autofill,HardcodedText" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Age"
+                    android:layout_marginTop="10dp"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:id="@+id/edtAge"
+                    tools:ignore="Autofill,HardcodedText" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile"
+                    android:layout_marginTop="10dp"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:id="@+id/edtMobile"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/edtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Address"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:visibility="invisible"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="Date of Joining"
+                        android:layout_weight="1"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:id="@+id/edtJoining"
+                        android:enabled="false"
+                        tools:ignore="Autofill,HardcodedText,TextFields" />
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_calendar"
+                        android:id="@+id/imgPicDate"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="Date of Expiry"
+                        android:layout_weight="1"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:id="@+id/edtExpire"
+                        android:enabled="false"
+                        tools:ignore="Autofill,HardcodedText,TextFields" />
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_calendar"
+                        android:id="@+id/imgPicDateExpiry"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Amount : "
+                        android:textSize="16sp"
+                        android:layout_weight="0.7"
+                        android:textColor="@color/black"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:inputType="numberDecimal"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:id="@+id/edtAmount"
+                        tools:ignore="Autofill,HardcodedText,LabelFor"
+                        android:gravity="end"
+                        android:hint="0.00"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Extra Description : "
+                        android:textSize="16sp"
+                        android:layout_weight="0.7"
+                        android:textColor="@color/black"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:id="@+id/edtDescription"
+                        tools:ignore="Autofill,HardcodedText,LabelFor"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="save"
+                        android:layout_weight="1"
+                        android:id="@+id/btnAddMemberSave"
+                        android:background="@color/purple_500"
+                        android:layout_marginEnd="5dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Delete"
+                        android:id="@+id/btnDelete"
+                        android:layout_weight="1"
+                        android:background="@color/purple_500"
+                        android:layout_marginEnd="5dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"/>
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

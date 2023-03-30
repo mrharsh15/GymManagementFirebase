@@ -35,9 +35,13 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
         FirebaseApp.initializeApp(this)
         auth = Firebase.auth
-
         email = findViewById(R.id.login_email)
         password = findViewById(R.id.login_password)
+
+        if(auth!=null){
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
 
         val signupText = findViewById<TextView>(R.id.signupText)
         signupText.setOnClickListener(View.OnClickListener {
@@ -77,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
 //        intent.putExtra("data",user)
         startActivity(intent)
         finish()
+
     }
 
 
