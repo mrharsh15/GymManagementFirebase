@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.exp
 
 
 class FragmentAddMember : Fragment() {
@@ -43,6 +44,7 @@ class FragmentAddMember : Fragment() {
     private lateinit var joiningDate: EditText
     private lateinit var expiryDate: EditText
     private var gender = "Male"
+    private lateinit var member: Member
 
 
     override fun onCreateView(
@@ -62,6 +64,18 @@ class FragmentAddMember : Fragment() {
         expiryDate = binding.edtExpire
         mAuth = FirebaseAuth.getInstance()
         databaseRef = FirebaseDatabase.getInstance().reference.child("member")
+
+        val isMember = requireArguments().getBoolean("renew", false)
+        if(isMember){
+            member = requireArguments().getSerializable("member")!! as Member
+            val name = member.name.split(" ").toList()
+            fname.setText(name[0])
+            lname.setText(name[1])
+            memberId.setText(member.memberId)
+            mobile.setText(member.mobileNum)
+            joiningDate.setText(member.joiningDate)
+            expiryDate.setText(member.expiryData)
+        }
         return binding.root
     }
 
@@ -94,10 +108,6 @@ class FragmentAddMember : Fragment() {
 //            binding.edtExpire.setText(sdf.format(cal.time))
 
         }
-
-
-
-
 
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, id ->
             when(id){

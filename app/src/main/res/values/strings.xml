@@ -8,7 +8,7 @@
     <string-array name="membership">
         <item>Select</item>
         <item>1 Month</item>
-        <item>3 Month</item>
+        <item>4 Month</item>
         <item>6 Month</item>
         <item>12 Month</item>
     </string-array>

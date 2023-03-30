@@ -11,9 +11,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.codewithme.gymmanagement.R
+import com.codewithme.gymmanagement.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 
@@ -28,6 +31,9 @@ class SignupActivity : AppCompatActivity() {
     lateinit var email:EditText
     lateinit var password:EditText
     lateinit var confirmPassword:EditText
+    lateinit var name: EditText
+
+    lateinit var database: DatabaseReference
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +47,9 @@ class SignupActivity : AppCompatActivity() {
         email = findViewById(R.id.signup_email)
         password = findViewById(R.id.signup_password)
         confirmPassword = findViewById(R.id.signup_confirm_password)
+        name = findViewById(R.id.signup_name)
+
+        database = FirebaseDatabase.getInstance().reference.child("user")
 
         loginText.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -60,7 +69,11 @@ class SignupActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("TAG", "createUserWithEmail:success")
                         val user = auth.currentUser
-                        updateUI(user)
+                        database.child(user!!.uid).setValue(User(name.text.trim().toString(), email.text.trim().toString(), password.text.trim().toString())).addOnCompleteListener {
+                            if(task.isSuccessful){
+                                updateUI(user)
+                            }
+                        }
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("TAG", "createUserWithEmail:failure", task.exception)

@@ -1,5 +1,6 @@
 package com.codewithme.gymmanagement.fragment
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
@@ -35,14 +36,15 @@ class HomeFragment : Fragment() {
     private lateinit var search: SearchView
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewSearch: RecyclerView
+    private val bundle = Bundle()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        databaseReference = FirebaseDatabase.getInstance().reference.child("member")
         mAuth = FirebaseAuth.getInstance()
+        databaseReference = FirebaseDatabase.getInstance().reference.child("member").child(mAuth.currentUser!!.uid)
         memberList = ArrayList()
 
         radioGroup = view.findViewById(R.id.rdGroupMember)
@@ -68,10 +70,11 @@ class HomeFragment : Fragment() {
                                 memberList.add(member)
                                 val adapter = MemberAdapter(memberList)
                                 recyclerView.adapter = adapter
-                                adapter.notifyDataSetChanged()
                                 adapter.setOnClickListener(object: MemberAdapter.onClickListener{
                                     override fun onClick(position: Int) {
-                                        makeScreen(RenewFragment())
+                                        bundle.putBoolean("renew", true)
+                                        bundle.putSerializable("member", member)
+                                        makeScreen(FragmentAddMember())
                                     }
 
                                 })
@@ -93,6 +96,7 @@ class HomeFragment : Fragment() {
             when(checkedId){
                 R.id.rdActiveMember -> {
                     databaseReference.addValueEventListener(object: ValueEventListener{
+                        @SuppressLint("SimpleDateFormat")
                         @RequiresApi(Build.VERSION_CODES.O)
                         override fun onDataChange(snapshot: DataSnapshot) {
                             memberList.clear()
@@ -105,11 +109,11 @@ class HomeFragment : Fragment() {
                                         memberList.add(member)
                                         val adapter = MemberAdapter(memberList)
                                         recyclerView.adapter = adapter
-                                        adapter.notifyDataSetChanged()
-                                        adapter.notifyDataSetChanged()
                                         adapter.setOnClickListener(object: MemberAdapter.onClickListener{
                                             override fun onClick(position: Int) {
-                                                makeScreen(RenewFragment())
+                                                bundle.putBoolean("renew", true)
+                                                bundle.putSerializable("member", member)
+                                                makeScreen(FragmentAddMember())
                                             }
 
                                         })
@@ -141,10 +145,11 @@ class HomeFragment : Fragment() {
                                         memberList.add(member)
                                         val adapter = MemberAdapter(memberList)
                                         recyclerView.adapter = adapter
-                                        adapter.notifyDataSetChanged()
                                         adapter.setOnClickListener(object: MemberAdapter.onClickListener{
                                             override fun onClick(position: Int) {
-                                                makeScreen(RenewFragment())
+                                                bundle.putBoolean("renew", true)
+                                                bundle.putSerializable("member", member)
+                                                makeScreen(FragmentAddMember())
                                             }
 
                                         })
@@ -210,7 +215,9 @@ class HomeFragment : Fragment() {
                         recyclerViewSearch.adapter = adapter
                         adapter.setOnClickListener(object : MemberAdapter.onClickListener {
                             override fun onClick(position: Int) {
-                                makeScreen(RenewFragment())
+                                bundle.putSerializable("member", member)
+                                bundle.putBoolean("renew", true)
+                                makeScreen(FragmentAddMember())
                             }
                         })
                     }
@@ -227,6 +234,7 @@ class HomeFragment : Fragment() {
     private fun makeScreen(fragment: Fragment){
         requireFragmentManager().beginTransaction().apply {
             replace(R.id.frame_container, fragment)
+            fragment.arguments = bundle
             addToBackStack("none")
             commit()
         }

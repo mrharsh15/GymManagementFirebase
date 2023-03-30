@@ -49,12 +49,26 @@
                         android:textAlignment="center"
                         android:textStyle="bold"
                         android:textColor="@color/purple"/>
+
+                    <EditText
+                        android:layout_width="300dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/signup_name"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="Name"
+                        android:inputType="textEmailAddress"
+                        android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
+                        android:drawablePadding="8dp"
+                        android:background="@drawable/custom_edittext"/>
+
                     <EditText
                         android:layout_width="300dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:id="@+id/signup_email"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="20dp"
                         android:padding="8dp"
                         android:hint="Email"
                         android:inputType="textEmailAddress"

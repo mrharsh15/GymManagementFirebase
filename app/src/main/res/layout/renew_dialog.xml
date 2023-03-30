@@ -74,31 +74,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Membership : "
-                android:textSize="16sp"
-                android:layout_weight="0.7"
-                android:textColor="@color/black"/>
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:id="@+id/spDialogMembership"
-                android:entries="@array/membership"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:backgroundTint="@color/drop_down_icon"/>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

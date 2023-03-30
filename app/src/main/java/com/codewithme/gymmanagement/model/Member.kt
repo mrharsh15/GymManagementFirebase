@@ -7,4 +7,4 @@ data class Member (
     var mobileNum: String = "",
     var joiningDate: String = "",
     var expiryData: String = ""
-        )
+        ): java.io.Serializable

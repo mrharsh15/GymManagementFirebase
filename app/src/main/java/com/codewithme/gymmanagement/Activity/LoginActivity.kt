@@ -18,7 +18,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
     private lateinit var email : EditText
     private lateinit var password : EditText
     private lateinit var btn_login:Button
@@ -34,14 +34,10 @@ class LoginActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         FirebaseApp.initializeApp(this)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
         email = findViewById(R.id.login_email)
         password = findViewById(R.id.login_password)
 
-        if(auth!=null){
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
-        }
 
         val signupText = findViewById<TextView>(R.id.signupText)
         signupText.setOnClickListener(View.OnClickListener {
@@ -84,5 +80,21 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    override fun onAuthStateChanged(user: FirebaseAuth) {
+        if(user.currentUser != null){
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+    }
 
+    override fun onStart() {
+        super.onStart()
+        FirebaseAuth.getInstance().addAuthStateListener(this)
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        FirebaseAuth.getInstance().removeAuthStateListener(this)
+    }
 }
