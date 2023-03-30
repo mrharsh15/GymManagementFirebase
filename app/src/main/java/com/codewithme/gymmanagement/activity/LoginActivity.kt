@@ -1,4 +1,4 @@
-package com.codewithme.gymmanagement.Activity
+package com.codewithme.gymmanagement.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,8 +14,6 @@ import com.codewithme.gymmanagement.R
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {

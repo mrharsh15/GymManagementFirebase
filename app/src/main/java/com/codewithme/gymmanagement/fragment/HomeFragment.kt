@@ -58,10 +58,8 @@ class HomeFragment : Fragment() {
         radioGroup = view.findViewById(R.id.rdGroupMember)
         fab = view.findViewById(R.id.imgAddMember)
         fab.setOnClickListener{
-            requireFragmentManager().beginTransaction().apply {
-                bundle.putBoolean("renew", false)
-                makeScreen(FragmentAddMember())
-            }
+            bundle.putBoolean("renew", false)
+            makeScreen(FragmentAddMember())
         }
 
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
@@ -90,7 +88,7 @@ class HomeFragment : Fragment() {
                                 adapter.setOnClickListener(object: MemberAdapter.onClickListener{
                                     override fun onClick(position: Int) {
                                         bundle.putBoolean("renew", true)
-                                        bundle.putSerializable("member", member)
+                                        bundle.putSerializable("member", memberList[position])
                                         makeScreen(FragmentAddMember())
                                     }
 
@@ -131,7 +129,7 @@ class HomeFragment : Fragment() {
                                         adapter.setOnClickListener(object: MemberAdapter.onClickListener{
                                             override fun onClick(position: Int) {
                                                 bundle.putBoolean("renew", true)
-                                                bundle.putSerializable("member", member)
+                                                bundle.putSerializable("member", memberList[position])
                                                 makeScreen(FragmentAddMember())
                                             }
 
@@ -168,7 +166,7 @@ class HomeFragment : Fragment() {
                                         adapter.setOnClickListener(object: MemberAdapter.onClickListener{
                                             override fun onClick(position: Int) {
                                                 bundle.putBoolean("renew", true)
-                                                bundle.putSerializable("member", member)
+                                                bundle.putSerializable("member", memberList[position])
                                                 makeScreen(FragmentAddMember())
                                             }
 
@@ -235,7 +233,7 @@ class HomeFragment : Fragment() {
                         recyclerViewSearch.adapter = adapter
                         adapter.setOnClickListener(object : MemberAdapter.onClickListener {
                             override fun onClick(position: Int) {
-                                bundle.putSerializable("member", member)
+                                bundle.putSerializable("member", memberList[position])
                                 bundle.putBoolean("renew", true)
                                 makeScreen(FragmentAddMember())
                             }

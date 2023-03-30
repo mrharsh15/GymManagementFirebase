@@ -1,4 +1,4 @@
-package com.codewithme.gymmanagement.Activity
+package com.codewithme.gymmanagement.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent

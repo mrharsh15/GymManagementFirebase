@@ -1,19 +1,20 @@
-package com.codewithme.gymmanagement.Activity
+package com.codewithme.gymmanagement.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.codewithme.gymmanagement.R
 import com.codewithme.gymmanagement.databinding.ActivityHomeBinding
 import com.codewithme.gymmanagement.fragment.FragmentAddMember
 import com.codewithme.gymmanagement.fragment.HomeFragment
+import com.codewithme.gymmanagement.fragment.RenewFragment
 import com.codewithme.gymmanagement.model.User
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +36,8 @@ class HomeActivity : AppCompatActivity(),  NavigationView.OnNavigationItemSelect
 
 //        setSupportActionBar(binding.homeInclude.toolbar)
 //        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.homeInclude.toolbar.title = "Home"
         drawer = binding.drawerLayout
         toggle = ActionBarDrawerToggle(this, drawer,binding.homeInclude.toolbar, R.string.open, R.string.close)
         drawer.addDrawerListener(toggle)
@@ -73,7 +76,7 @@ class HomeActivity : AppCompatActivity(),  NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
-//                Toast.makeText(this, "Home", Toast.LENGTH_LONG).show()
+                binding.homeInclude.toolbar.title = "Home"
                 val fragment = HomeFragment()
                 loadFragment(fragment)
                 if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -81,6 +84,7 @@ class HomeActivity : AppCompatActivity(),  NavigationView.OnNavigationItemSelect
                 }
             }
             R.id.nav_add -> {
+                binding.homeInclude.toolbar.title = "Add Member"
                 bundle.putBoolean("renew", false)
                 loadFragment(FragmentAddMember())
                 if (drawer.isDrawerOpen(GravityCompat.START)) {

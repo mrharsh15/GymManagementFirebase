@@ -5,8 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.codewithme.gymmanagement.Activity.LoginActivity
-import com.codewithme.gymmanagement.Activity.SignupActivity
+import com.codewithme.gymmanagement.activity.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
