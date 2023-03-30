@@ -63,7 +63,7 @@ class FragmentAddMember : Fragment() {
         joiningDate = binding.edtJoining
         expiryDate = binding.edtExpire
         mAuth = FirebaseAuth.getInstance()
-        databaseRef = FirebaseDatabase.getInstance().reference.child("member")
+        databaseRef = FirebaseDatabase.getInstance().reference.child("user").child(mAuth.currentUser!!.uid).child("member")
 
         val isMember = requireArguments().getBoolean("renew", false)
         if(isMember){
@@ -123,7 +123,7 @@ class FragmentAddMember : Fragment() {
 
         binding.btnAddMemberSave.setOnClickListener {
             val member: Member = Member(memberId.text.toString().trim(), fname.text.toString().trim()+" "+lname.text.toString().trim(), gender.toString(), mobile.text.toString().trim(), joiningDate.text.toString().trim(), expiryDate.text.toString().trim())
-            databaseRef.child(mAuth.currentUser!!.uid+memberId.text.toString().trim()).setValue(member).addOnCompleteListener {
+            databaseRef.child(member.memberId).setValue(member).addOnCompleteListener {
                 if(it.isSuccessful){
                     loadScreen(HomeFragment())
                 }

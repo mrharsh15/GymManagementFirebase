@@ -10,14 +10,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.SearchView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codewithme.gymmanagement.R
 import com.codewithme.gymmanagement.adapter.MemberAdapter
 import com.codewithme.gymmanagement.model.Member
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
@@ -25,6 +28,7 @@ import java.time.DateTimeException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.Comparator
 import kotlin.collections.ArrayList
 
 
@@ -36,6 +40,7 @@ class HomeFragment : Fragment() {
     private lateinit var search: SearchView
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewSearch: RecyclerView
+    private lateinit var fab: ImageView
     private val bundle = Bundle()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +49,20 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         mAuth = FirebaseAuth.getInstance()
-        databaseReference = FirebaseDatabase.getInstance().reference.child("member").child(mAuth.currentUser!!.uid)
+        databaseReference = FirebaseDatabase.getInstance().reference.child("user").child(mAuth.currentUser!!.uid).child("member")
         memberList = ArrayList()
 
+        var count = 0
+        val totalMembers = view.findViewById<TextView>(R.id.memberCount)
+
         radioGroup = view.findViewById(R.id.rdGroupMember)
+        fab = view.findViewById(R.id.imgAddMember)
+        fab.setOnClickListener{
+            requireFragmentManager().beginTransaction().apply {
+                bundle.putBoolean("renew", false)
+                makeScreen(FragmentAddMember())
+            }
+        }
 
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerViewSearch = view.findViewById(R.id.recyclerViewSearch)
@@ -62,12 +77,14 @@ class HomeFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     memberList.clear()
                     for(postSnapshot in snapshot.children){
+                        count++
                         try{
                             val member = postSnapshot.getValue(Member::class.java)!!
                             val myFormat = "dd/MM/yyyy"
                             val expDate = SimpleDateFormat(myFormat).parse(member.expiryData)!!
                             if(!expDate.before(Date())) {
                                 memberList.add(member)
+                                Comparator<Member>{lhs, rhs -> (rhs.memberId.toInt()).compareTo(lhs.memberId.toInt())}
                                 val adapter = MemberAdapter(memberList)
                                 recyclerView.adapter = adapter
                                 adapter.setOnClickListener(object: MemberAdapter.onClickListener{
@@ -84,6 +101,7 @@ class HomeFragment : Fragment() {
                             Log.d("Error", exp.message.toString())
                         }
                     }
+                    totalMembers.text = "Total Members: $count"
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -107,6 +125,7 @@ class HomeFragment : Fragment() {
                                     val expDate = SimpleDateFormat(myFormat).parse(member.expiryData)!!
                                     if(!expDate.before(Date())) {
                                         memberList.add(member)
+                                        Comparator<Member>{lhs, rhs -> (rhs.memberId.toInt()).compareTo(lhs.memberId.toInt())}
                                         val adapter = MemberAdapter(memberList)
                                         recyclerView.adapter = adapter
                                         adapter.setOnClickListener(object: MemberAdapter.onClickListener{
@@ -143,6 +162,7 @@ class HomeFragment : Fragment() {
                                     val expDate = SimpleDateFormat(myFormat).parse(member.expiryData)!!
                                     if(expDate.before(Date())) {
                                         memberList.add(member)
+                                        Comparator<Member>{lhs, rhs -> (rhs.memberId.toInt()).compareTo(lhs.memberId.toInt())}
                                         val adapter = MemberAdapter(memberList)
                                         recyclerView.adapter = adapter
                                         adapter.setOnClickListener(object: MemberAdapter.onClickListener{
