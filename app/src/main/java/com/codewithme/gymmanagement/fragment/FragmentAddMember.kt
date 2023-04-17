@@ -59,7 +59,7 @@ class FragmentAddMember : Fragment() {
         memberId = binding.memberId
         age = binding.edtAge
         mobile = binding.edtMobile
-        amount = binding.edtAmount
+//        amount = binding.edtAmount
         joiningDate = binding.edtJoining
         expiryDate = binding.edtExpire
         mAuth = FirebaseAuth.getInstance()
@@ -132,9 +132,9 @@ class FragmentAddMember : Fragment() {
             }
         }
 
-        binding.btnDelete.setOnClickListener {
-
-        }
+//        binding.btnDelete.setOnClickListener {
+//
+//        }
 
 
         binding.imgPicDate.setOnClickListener {

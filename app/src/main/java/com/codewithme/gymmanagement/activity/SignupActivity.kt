@@ -71,14 +71,14 @@ class SignupActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         database.child(user!!.uid).setValue(User(name.text.trim().toString(), email.text.trim().toString(), password.text.trim().toString())).addOnCompleteListener {
                             if(task.isSuccessful){
+                                Toast.makeText(this, "Welcome!", Toast.LENGTH_LONG).show()
                                 updateUI(user)
                             }
                         }
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("TAG", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
 //                        updateUI(null)
                     }
                 }

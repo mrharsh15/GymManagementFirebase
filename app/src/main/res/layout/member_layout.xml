@@ -52,7 +52,7 @@
                 android:id="@+id/txtAdapterName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7"
+                android:layout_weight="0.6"
                 android:text="John"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -60,8 +60,9 @@
                 android:id="@+id/txtAdapterGender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_weight="0.4"
                 android:text="Gender"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -78,13 +79,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
                 android:id="@+id/txtExpiry"
-                android:layout_width="wrap_content"
+                android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="0"
                 android:text="Expiry : 18/04/21"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -95,8 +99,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="Active"
+                android:layout_weight="0"
                 android:gravity="center"
+                android:text="Active"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>

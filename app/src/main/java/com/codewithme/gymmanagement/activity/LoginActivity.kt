@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity(), FirebaseAuth.AuthStateListener {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Toast.makeText(this, "welcome", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show()
                         Log.d("TAG", "createUserWithEmail:success")
                         val user = auth.currentUser
                         updateUI(user)
